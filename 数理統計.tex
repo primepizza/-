@@ -1,0 +1,258 @@
+\documentclass[a4paper,11pt]{ltjsarticle}
+\usepackage[no-math]{luatexja-fontspec}
+\usepackage[scale=0.9]{roboto}
+\usepackage{physics2}
+\usepackage{derivative}
+\usepackage{bm}
+\usephysicsmodule{ab}
+\usepackage{amsthm}
+\input{newmacro.tex}
+\title{統計検定(統計数理)}
+\author{田淵進}
+\theoremstyle{definition}
+\newtheorem{remark}{Remark}
+\newtheorem{definition}[remark]{Definition}
+\newtheorem{theorem}[remark]{Theorem}
+\usepackage[japanese,english]{babel}
+\begin{document}
+\maketitle
+
+\part{2023年}
+1,2は簡単なので省略．問1で推定量$\alpha$の$\beta$に対する漸近相対効率を問われているが，この定義は
+\begin{align}
+    \lim_{n\to\infty}\frac{V[\beta]}{V[\alpha]}
+\end{align}
+のことである．ただし，$n$はサンプル数であり，$\alpha,\beta$は$n$に依存している値で，特に一致推定量であれば分散は$0$に収束する．
+\setcounter{section}{2}
+\section{}
+\subsection{}
+$X$は指数分布$f(x)=\lambda e^{-\lambda x}\ (x>0)$に従うので，
+\begin{align*}
+    E[X]&=\lambda\int^{\infty}_{0}x\lambda e^{-\lambda x}dx\\
+    &= \int^{\infty}_{0} e^{-\lambda x} dx\\
+    &= \frac{1}{\lambda}
+\end{align*}
+となる．
+\subsection{}
+モーメント母関数は$t<\lambda$の範囲で
+\begin{align*}
+    M_{X}(t)&=E[e^{tX}] \\
+        &=\int^{\infty}_{0} e^{tx}\lambda e^{-\lambda x} dx \\
+        &=\lambda \int^{\infty}_{0} e^{-(\lambda - t)x} dx \\
+        &=\frac{\lambda}{\lambda - t}
+\end{align*}
+となる．
+\subsection{}
+確率変数$X_{W}$の従う密度は$g(x)=\frac{e^{hx}f(x)}{M_{X}(h)}$で与えられるので，$h>0$に対しては
+\begin{align*}
+    E[X_{W}]&=\int^{\infty}_{0} x \frac{e^{hx}\lambda e^{-\lambda x}}{M_{X}(h)} dx \\
+        &=\frac{\lambda}{M_{X}(h)} \int^{\infty}_{0} x e^{-(\lambda - h)x} dx \\
+        &=\frac{1}{M_{X}(h)}\int_{\infty}^{0}e^{-(\lambda - h)x} dx \\
+        &=\frac{1}{M_{X}(h)} \cdot \frac{\lambda}{(\lambda - h)^{2}} \\
+        &=\frac{1}{\lambda - h}\\
+        &>E[X]
+\end{align*}
+となる．
+\subsection{}
+一般の確率密度$f$に従う分布$X$について，$X_{W}$のモーメント母関数を考えると，
+\begin{align*}
+E[e^{tX_{W}}]&=\int^{\infty}_{-\infty} e^{tx} \frac{e^{hx}f(x)}{M_{X}(h)} dx \\
+    &=\frac{1}{M_{X}(h)} \int^{\infty}_{-\infty} e^{(t+h)x} f(x) dx \\
+    &=\frac{M_{X}(t+h)}{M_{X}(h)}
+\end{align*}
+ここで，$t$に関する$r$回微分を考えると，
+\begin{align*}
+    E[X^{r}]&=\frac{M_{X}^{(r)}(h+0)}{M_{X}(h)}
+\end{align*}
+を得る．
+\subsection{}
+$h=0$とすると，$M_{X}(0)=1$であるので，$X_{W}$と$X$の分布は等しい．ここで，
+\begin{align*}
+    \odv{E[X_{W}]}{h}&=\frac{M_{X}''(h)M_{X}(h)-\pab{M_{X}'(h)}^2}{M_X(h)^{2}}\\
+    &=E[X_{W}^{2}] - E[X_{W}]^{2}\\
+    &=Var(X_{W})\\
+    &>0
+\end{align*}
+となる．よって，$h>0$に対して$E[X_{W}]>E[X]$であり，$h<0$に対して$E[X_{W}]<E[X]$である．
+\newpage
+\section{}
+\subsection{}
+$W$が自由度$k$のカイ二乗分布に従うとする．このとき，
+\begin{align*}
+    E\bab{W}&=\frac{1}{2^{k/2}\Gamma\pab{k/2}}\int^{\infty}_{0} t\cdot t^{k/2-1} e^{-t/2} dt \\
+        &=\frac{1}{2^{k/2}\Gamma\pab{k/2}} 2^{k/2+1} \Gamma\pab{\frac{k}{2}+1} \\
+        &=k
+\end{align*}
+であり，特に$k\geq 3$においては
+\begin{align*}
+    E\bab{1/W}&=\int^{\infty}_{0} \frac{1}{t} \cdot \frac{1}{2^{k/2}\Gamma\pab{k/2}} t^{k/2-1} e^{-t/2} dt \\
+        &=\frac{1}{2^{k/2}\Gamma\pab{k/2}} 2^{k/2-1} \Gamma\pab{\frac{k}{2}-1} \\
+        &=\frac{1}{k-2}
+\end{align*}
+となる．
+\subsection{}
+今，$\mathbf{\varepsilon}\sim N(0,\sigma^{2}I_{n})$であり，係数ベクトル$\beta\in\Real^{p}$及び説明変数行列$X\in\Real^{n\times p}$について，線形回帰モデル
+\begin{align*}
+    Y&=X\beta+\mathbf{\varepsilon} 
+\end{align*}
+が与えられている．今，仮定より$X$のランクは$p$である．このとき，$X$の転置行列を$X$とすると，
+\begin{align*}
+    P\coloneqq X\pab{X^{T}X}^{-1}X^{T}
+\end{align*}
+は$\Im(X)$への直交射影である．実際，
+\begin{align*}
+    P^2&=X\pab{X^{T}X}^{-1}X^{T}X\pab{X^{T}X}^{-1}X^{T} \\
+        &=X\pab{X^{T}X}^{-1}X^{T} \\
+        &=P \\
+    P^{T}&=\pab{X\pab{X^{T}X}^{-1}X^{T}}^{T} \\
+        &=X\pab{X^{T}X}^{-1}X^{T} \\
+        &=P
+\end{align*}
+が成り立つため，直交射影である．また明らかに$\Im{P}\subset \Im{X}$であり，任意の$v\in \Im{X}$に対して，ある$c\in\Real^{p}$が存在して$v=Xc$とかけるので，
+\begin{align*}
+    Pv&=X\pab{X^{T}X}^{-1}X^{T}v \\
+        &=X\pab{X^{T}X}^{-1}X^{T}Xc \\
+        &=Xc \\
+        &=v\in \Im{P}
+\end{align*}
+となることから，$\Im{X}=\Im{P}$も成り立つ．\par
+ここで，$\Im{X}$と$\Im{X}$の直交補空間の正規直交基底をそれぞれ$\{g_{1},\cdots,g_{p}\}$，$\{g_{p+1},\cdots,g_{n}\}$とする．このとき，行列
+\begin{align*}
+    G\coloneqq \pab{g_{1},\cdots,g_{n}}
+\end{align*}
+という直交行列を取ると，基底の変換によって，ある$\eta_{1},\ldots,\eta_{p}\in\Real $を用いて
+\begin{align}
+    G^{T}Y&=G^{T}X\beta+ G^{T}\mathbf{\varepsilon}\\
+        &=\begin{pmatrix}
+            \eta_{1}\\
+            \vdots \\
+            \eta_{p} \\
+            0 \\
+            \vdots \\
+            0
+        \end{pmatrix}
+        +G^{T}\mathbf{\varepsilon}
+\end{align}
+と表される．特に，$G^{T}\mathbf{\varepsilon}$は再び$N(0,\sigma^{2}I_{n})$に従うので，各成分を$\gamma_{1},\ldots,\gamma_{n}$とおくと
+\begin{align*}
+    G^{T}\hat{Y}=X\hat{\beta}&=PY\\
+        &= P\pab{X\beta+\mathbf{\varepsilon}} \\
+        &=X\beta + G^{T}P\mathbf{\varepsilon} \\
+        &=\begin{pmatrix}
+            \eta_{1}+\gamma_{1}\\
+            \vdots \\
+            \eta_{p} +\gamma_{p}\\
+            0 \\
+            \vdots \\
+            0
+        \end{pmatrix}
+\end{align*}
+となる．よって，
+\begin{align*}
+    \hat{\sigma^{2}}=\frac{1}{n}\Vab{Y-X\hat{\beta}}^{2}&=\frac{1}{n}\Vab{G^{T}Y-G^{T}X\hat{\beta}}^{2} \\
+        &=\frac{1}{n}\sum_{i=p+1}^{n} \gamma_{i}^{2}
+\end{align*}
+であり，
+\begin{align*}
+    \Vab{X\hat{\beta}-X\beta}^{2}&=\Vab{G^{T}X\hat{\beta}-G^{T}X\beta}^{2} \\
+        &=\sum_{i=1}^{p} \gamma_{i}^{2}
+\end{align*}
+となる．以上から，
+\begin{align*}
+    W_{1}&:=n\hat{\sigma^{2}}/\sigma^{2}=\frac{1}{\sigma^{2}} \sum_{i=p+1}^{n} \gamma_{i}^{2}\\
+    W_{2}&=\Vab{X\hat{\beta}-X\beta}^{2}=\frac{1}{\sigma^{2}} \sum_{i=1}^{p} \gamma_{i}^{2}
+\end{align*}
+はそれぞれ独立に，自由度$n-p$，$p$のカイ二乗分布に従う．
+\subsection{}
+前問と同じ記号を用いて，
+$G^{T}\varepsilon'=(\gamma_{1}',\ldots,\gamma_{n}')^{T}$とおく．このとき，
+\begin{align*}
+    Z-\hat{Y}=\begin{pmatrix}
+        \gamma_{1}'-\gamma_{1} \\
+        \vdots \\
+        \gamma_{p}'-\gamma_{p} \\
+        \gamma_{p+1}' \\
+        \vdots \\
+        \gamma_{n}'
+    \end{pmatrix}
+\end{align*}
+となる．よって，
+\begin{align*}
+    \Coex{\Vab{Z-\hat{Y}}}{Y}&=\Coex{\sum_{i=1}^{p} (\gamma_{i}'-\gamma_{i})^{2} + \sum_{i=p+1}^{n} \gamma_{i}'^{2} \mid }{Y} \\
+    &= \sum_{i=1}^{p} \Coex{(\gamma_{i}'-\gamma_{i})^{2}}{Y} + \sum_{i=p+1}^{n} E\bab{\gamma_{i}'^{2}} \\
+    &= n\sigma^{2} + W_{2}\sigma^{2}
+\end{align*}
+となる．
+\subsection{}
+各値がどのような確率変数かはわかっているので，計算すると
+\begin{align*}
+    E\bab{\frac{\Delta(Z)-\Delta(Y)}{\hat{\sigma^{2}}}}&=E\bab{\frac{n\sigma^{2}+W_{2}\sigma^{2}-W_{1}\sigma^{1}}{\sigma^{2}W_{1}/n}} \\
+        &=\frac{n(n+p)}{n-p-2}-n\\
+        &=\frac{2n(p+1)}{n-p-2}
+\end{align*}
+であり，極限は
+\begin{align*}
+    \lim_{n\to\infty}\frac{2n(p+1)}{n-p-2}&=2(p+1)
+\end{align*}
+\newpage
+\section{}
+\subsection{}
+各$U_{i}$は有限母集団$\Set{z_{1},\ldots,z_{n}}$からの非復元抽出であるので，$E[U_{i}]=\bar{z}$であり，$V[U_{i}]=\sigma^{2}_{N}$である．よって，
+\begin{align*}
+    E[\bar{U}]&=\bar{z}
+\end{align*}
+であり，有限母集団修正を考慮すると，
+\begin{align*}
+    V[\bar{U}]&=\frac{\sigma^{2}_{N}}{m}\frac{N-m}{N-1}
+\end{align*}
+となる．
+\subsection{}
+いま，$m\bar{U}+n\bar{V}=(m+n)\bar{z}$であることに注意すると，
+\begin{align*}
+    D&=\bar{U}-\bar{V}\\
+    &=\bar{U}-\frac{(m+n)\bar{z}-m\bar{U}}{n} \\
+        &=\frac{m+n}{n}\pab{\bar{U}-\bar{z}}
+\end{align*}
+となる．また，
+\begin{align*}
+    (N-2)\tilde{S}^{2}=\sum^{m}_{i=1}(U_{i}-\bar{U})^2+\sum^{n}_{j=1}(V_{j}-\bar{V})^2&=\sum^{m}_{i=1}(U_{i}-\bar{z})^2+\sum^{n}_{j=1}(V_{j}-\bar{z})^2 - m(\bar{U}-\bar{z})^2 - n(\bar{V}-\bar{z})^2\\
+    &=\sum^{m}_{i=1}(U_{i}-\bar{z})^2+\sum^{n}_{j=1}(V_{j}-\bar{z})^2 - \frac{mn}{m+n}(\bar{U}-\bar{V})^2\\
+    &=N\sigma^{2}_{N} - \frac{mn}{m+n}D^{2}
+\end{align*}
+となり，
+\begin{align*}
+    N\sigma^{2}_{N}-(N-2)\tilde{S}^{2} = \frac{mn}{m+n}D^{2}
+\end{align*}
+を得る．
+\subsection{}
+いま，
+\begin{align*}
+    E[D]&=0\\
+    V[D]&=\pab{\frac{m+n}{n}}^2 V[\bar{U}]\\
+        &=\frac{(m+n)^{2}}{n^{2}}\cdot \frac{\sigma^{2}_{N}}{m}\cdot \frac{N-m}{N-1}\\
+        &=\frac{(m+n)^{2}}{(m+n-1)mn}\sigma^{2}_{N}
+\end{align*}
+\subsection{}
+2.の結果と3.の途中式より
+\begin{align*}
+    \frac{D-E[D]}{\sqrt{V[D]}}=\frac{U-E[U]}{\sqrt{V[U]}}
+\end{align*}
+が成り立ち，右辺は近似的に標準正規分布に従うので，左辺も近似的に標準正規分布に従う．
+\subsection{}
+いま，
+\begin{align*}
+    \tilde{T}^{2}&=\frac{D^2}{\pab{\frac{1}{m}+\frac{1}{n}}\tilde{S}^{2}}\\
+    &=\frac{mn}{N}\cdot \frac{D^2}{\tilde{S}^{2}}
+\end{align*}
+であることに注意すると，
+\begin{align*}
+    \tilde{W}^{2}&=\frac{D^{2}}{V[D]}\\
+    &=\frac{D^{2}(N-1)mn}{N^{2}\sigma^{2}_{N}}\\
+    &=\frac{D^{2}(N-1)mn}{N(N-2)\tilde{S}^{2}+mnD^{2}}\\
+    &=\frac{(N-1)mn}{N(N-2)\frac{\tilde{S}^{2}}{\tilde{D^{2}}}+ mn}\\
+    &=\frac{(N-1)mn}{(N-2)\cdot \frac{mn}{\tilde{T}^{2}} + mn}\\
+    &=\frac{N-1}{N-2+\tilde{T}^{2}}T^{2}
+\end{align*}
+よって，両辺の平方根を取れば良い．
+ここで，$\tilde{W}$は近似的に標準正規分布に従うので，検定が可能である．また，関数$g$は単調増加であるため，$T$を用いても同様の検定ができる．
+\end{document}

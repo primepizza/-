@@ -1,0 +1,14 @@
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\NewDocumentCommand{\Set}{m o O{\middle |}}{\IfValueTF{#2}{\left\{#1\ #3\ #2\right\}}{\left\{#1\right\}}}
+\NewDocumentCommand{\Coex}{m m}{E\left[#1 \ \middle | #2 \right]}
+\providecommand{\floor}[1]{\ab \lfloor#1\rfloor}
+\newcommand{\otherwise}{\mathrm{otherwise}}
+\newcommand{\suchthat}{\mathrm{\ s.t.\ }}
+\newcommand{\Number}{\mathbb{N}}
+\newcommand{\Zahlen}{\mathbb{Z}}
+\newcommand{\Quotient}{\mathbb{Q}}
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\Complex}{\mathbb{C}}
