@@ -16,7 +16,206 @@
 \usepackage[japanese,english]{babel}
 \begin{document}
 \maketitle
-
+\part{2022年}
+\section{}
+\subsection{}
+$A,B,C$がすべて独立のとき，
+\begin{align*}
+    P(A\cap B)&=P(A)P(B)=\frac{9}{16}\\
+    P(A\cap B \cap C)&=P(A)P(B)P(C)=\frac{27}{64}
+\end{align*}
+である．
+\subsection{}
+上界は$3/4$であり，下界は余事象を考えて$1/2$である．よって$P(A\cap B)$の取りうる値を$I$とすると，$I\subset [1/2,3/4]$である．逆の包含を構成的に示す．確率空間として$\Omega=[0,1]$にLebesgue測度を入れたものを考える．このとき，$r\in [0,1/4]$として$A=[0,3/4],B=[r,r+3/4]$とおくと，$P(A)=P(B)=3/4$および$A\cap B=[r,3/4]$であり，この確率は$[1/2,3/4]$の範囲を動く．\par
+よって$I=[1/2,3/4]$
+\subsection{}
+$P(A\cap B\cap C)$の取りうる範囲を$J$とすると，$A=C$の場合を考えると$J\supset I$がわかる．また，上界は明らかに$3/4$である．一方，下界は余事象を考えて$1/4$であるので，$[1/4,1/2]$の範囲を$P(A\cap B \cap C)$が取りうることを示す．確率空間として前問と同じ$\Omega,A,B$を$r=1/4$として取ったうえで，$C=[0,p]\cup[3/4,3/2-p]\ (0\in[1/2,3/4])$とおくと，$P(C)=3/4$かつ$A\cap B\cap C=[1/4,p]$であり，この確率は$[1/4,1/2]$の範囲を動く．\par
+よって$J=[1/4,3/4]$
+\subsection{}
+いま，有限な確率空間として
+\begin{align*}
+    \Omega&=\Set{\varepsilon,a,b,ab, c, ac, bc, abc}\\
+    A&=\Set{a,ab,ac,abc}\\ 
+    B&=\Set{b,ab,bc,abc}\\
+    C&=\Set{c,ac,bc,abc}
+\end{align*}
+と置くことができる．このとき，条件から$P(A\cap B^{c})=3/16$などが成り立つので，対称性から
+\begin{align*}
+    P(\varepsilon)&=s-1/8\\
+    P(a)&=3/16-s\\
+    P(b)&=3/16-s\\
+    P(c)&=3/16-s\\
+    P(ab)&=s\\
+    P(bc)&=s\\
+    P(ac)&=s\\
+    P(abc)&=9/16-s
+\end{align*}
+とかける．それぞれが非負になるための条件は$1/8\leq s \leq 3/16$である．よって$P(A\cap B\cap C)=9/16-s$の取りうる値は$[3/8,7/16]$である．
+\newpage
+\section{}
+\subsection{}
+定義から
+\begin{align*}
+    F_{1}(u)=P(U\leq u)&=\frac{1+u}{2}\\
+    F_{2}(v)=P(V\leq v)&=\frac{1+v}{2}
+\end{align*}
+すなわち，$[-1,1]$で一様分布に従う．
+\subsection{}
+$(U,V)$の同時密度は，
+\begin{align*}
+    \pdv{F(u,v)}{u}{v}&=1/4
+\end{align*}
+となるので，$(U,V)$は$[-1,1]\times[-1,1]$で一様分布に従い，成分ごとに独立である．
+\subsection{}
+座標平面上に$u^{2}+v^{2}\leq 1$となる領域を描くと，この面積の$1/4$倍が確率に等しいので，$P(U^{2}+V^{2}\leq 1)=\pi/4$となる．
+\subsection{}
+同様に，$\vab{u-v}\leq 1$の領域を考えて
+\begin{align*}
+    P(\vab{U-V}\leq 1)&=\frac{3}{4}
+\end{align*}
+である．
+\subsection{}
+$U^{2}-2UV+V^{2}\leq 1$の条件のもとで，$(u,v)$はこの領域を一様に分布する．よって
+\begin{align*}
+    E[V]&=\frac{1}{3}\int^{0}_{-1}v\int^{v+1}_{-1} du dv + \frac{1}{3}\int^{1}_{0} v \int^{1}_{v-1} du dv \\
+        &=\frac{1}{3}\int^{0}_{-1} v(v+2) dv + \frac{1}{3}\int^{1}_{0} v(2-v) dv \\
+        &=0 \\
+    E[V^2]&=\frac{1}{3}\int^{0}_{-1} v^{2}\int^{v+1}_{-1} du dv + \frac{1}{3}\int^{1}_{0} v^{2} \int^{1}_{v-1} du dv \\
+        &=\frac{1}{3}\int^{0}_{-1} v^{2}(v+2) dv + \frac{1}{3}\int^{1}_{0} v^{2}(2-v) dv \\
+        &=\frac{5}{18}
+\end{align*}
+となる．対称性から$E[U]=0$，$E[U^{2}]=5/18$であるので，共分散は
+\begin{align*}
+    Cov(U,V)&=E[UV]-E[U]E[V]\\
+        &=E[UV]\\
+        &=\frac{1}{3}\int^{0}_{-1} v \int^{v+1}_{-1} u du dv + \frac{1}{3}\int^{1}_{0} v \int^{1}_{v-1} u du dv \\
+        &=\frac{1}{3}\int^{0}_{-1} v \cdot \frac{(v+1)^{2}-1}{2} dv + \frac{1}{3}\int^{1}_{0} v \cdot \frac{1-(v-1)^{2}}{2} dv \\
+        &= \frac{5}{36}
+\end{align*}
+よって，相関係数は$1/2$となる．
+\newpage
+\section{}
+\subsection{}
+$X$はパラメータ$\lambda$のPouisson分布に従うので，
+\begin{align*}
+    E[X]&=\lambda\\
+    V[X]&=\lambda
+\end{align*}
+である．
+\subsection{}
+$\Lambda$はパラメータ$\alpha,\beta$のGamma分布に従うので，
+\begin{align*}
+    E[\Lambda]&=\frac{\beta^\alpha}{\Gamma(\alpha)} \int^{\infty}_{0} \lambda \cdot \lambda^{\alpha -1} e^{-\beta \lambda} d\lambda \\
+        &=\frac{\beta^\alpha}{\Gamma(\alpha)} \frac{\Gamma(\alpha+1)}{\beta^{\alpha +1}}\\
+        &=\frac{\alpha}{\beta}\\
+    E[\Lambda^{2}]&=\frac{\beta^\alpha}{\Gamma(\alpha)} \int^{\infty}_{0} \lambda^{2} \cdot \lambda^{\alpha -1} e^{-\beta \lambda} d\lambda \\
+        &=\frac{\beta^\alpha}{\Gamma(\alpha)} \frac{\Gamma(\alpha+2)}{\beta^{\alpha +2}}\\
+        &=\frac{(\alpha +1)\alpha}{\beta^{2}}
+\end{align*}
+ゆえ，
+\begin{align*}
+    V[\Lambda]&=E[\Lambda^{2}]-E[\Lambda]^{2}\\
+        &=\frac{\alpha}{\beta^{2}}
+\end{align*}
+となる．
+\subsection{}
+$X$の分布は，
+\begin{align*}
+    P(X=k)&=\int^{\infty}_{0} P(X=k \mid \Lambda=\lambda) f_{\Lambda}(\lambda) d\lambda \\
+        &=\int^{\infty}_{0} \frac{\lambda^{k} e^{-\lambda}}{k!} \cdot \frac{\beta^{\alpha}}{\Gamma(\alpha)} \lambda^{\alpha -1} e^{-\beta \lambda} d\lambda \\
+        &=\frac{\Gamma(\alpha+k)}{\Gamma(k+1)\Gamma(\alpha)} \cdot \pab{\frac{1}{1+\beta}}^{k} \cdot \pab{\frac{\beta}{1+\beta}}^{\alpha}
+\end{align*}
+と求まる．
+\subsection{}
+いま，$X$のモーメント母関数を考えると
+\begin{align*}
+    M_{X}(t)&=E[e^{tX}]\\
+        &=\sum^{\infty}_{k=0}  \frac{\Gamma(\alpha+k)}{\Gamma(k+1)\Gamma(\alpha)} \cdot \pab{\frac{e^t}{1+\beta}}^{k} \cdot \pab{\frac{\beta}{1+\beta}}^{\alpha}  
+\end{align*}
+ここで，$\gamma+1=e^{-t}(\beta+1)$とおくと，
+\begin{align*}
+    M_{X}(t)&=\pab{\frac{\beta}{\beta + 1}}^{\alpha}\cdot \pab{\frac{\gamma+1}{\gamma}}^{\alpha} \sum^{\infty}_{k=0} \frac{\Gamma(\alpha+k)}{\Gamma(k+1)\Gamma(\alpha)} \cdot\pab{\frac{\gamma}{\gamma+1}}^{\alpha} \pab{\frac{1}{1+\gamma}}^{k} \\
+    &=\pab{\frac{\beta}{e^{t}\gamma}}^{\alpha}\\
+    &=\pab{\frac{\beta}{1+\beta - e^{t}}}^{\alpha}
+\end{align*}
+となる．$t$について微分すると
+\begin{align*}
+    M_{X}'(t)&=\alpha \pab{\frac{\beta}{1+\beta - e^{t}}}^{\alpha +1} e^{t}\\
+    M_{X}''(t)&=\alpha \pab{\frac{\beta}{1+\beta - e^{t}}}^{\alpha +1} e^{t} + \alpha(\alpha +1) \pab{\frac{\beta}{1+\beta - e^{t}}}^{\alpha +2} e^{2t}
+\end{align*}
+であるので，
+\begin{align*}
+    E[X]&=M_{X}'(0)=\frac{\alpha}{\beta}\\
+    V[X]&=M_{X}''(0)-E[X]^{2}=\frac{\alpha}{\beta} + \frac{\alpha}{\beta^{2}}
+\end{align*}
+を得る．
+\subsection{}
+モーメント法においては，推定量は
+\begin{align*}
+    \frac{\tilde{\alpha}}{\tilde{\beta}}=\bar{X}\\
+    \frac{\tilde{\alpha}}{\tilde{\beta}} + \frac{\tilde{\alpha}}{\tilde{\beta}^{2}}=\tilde{S}^{2}
+\end{align*}
+となる．
+\begin{align*}
+    \hat{\alpha}&=\frac{\bar{X}^{2}}{S^{2}-\bar{X}}\\
+    \hat{\beta}&=\frac{\bar{X}}{S^{2}-\bar{X}}
+\end{align*}
+を得る．特に，$S^{2}>\bar{X}$のときに推定量は正になる．
+\newpage
+\section{}
+略
+\section{}
+\subsection{}
+正規分布の再生性から，
+\begin{align*}
+    D_{i}&=Y_{i}-X_{i} \sim N(\theta,2\sigma^{2})
+\end{align*}
+となる．
+\subsection{}
+次のように取れば良い．
+\begin{align*}
+    \nu&=\frac{\theta}{2}+\frac{1}{n}\sum^{n}_{i=1} \mu\\
+    a_{i}&=\mu_{i}-\frac{1}{n}\sum^{n}_{i=1} \mu_{i}\\
+    b_{1}&=-\theta/2\\
+    b_{2}&=\theta/2
+\end{align*}
+実際，このようにおくと，
+\begin{align*}
+    Z_{i1}=\mu_{i}+\varepsilon_{i1}\\
+    Z_{i2}=\mu_{i}+\theta + \varepsilon_{i2}
+\end{align*}
+となる．
+\subsection{}
+いま，
+\begin{align*}
+    \bar{Z}_{\cdot\cdot}&\coloneqq \frac{1}{2n} \sum^{n}_{i=1} (Z_{i1}+Z_{i2})\\
+    \bar{Z}_{i\cdot}&\coloneqq \frac{1}{2}(Z_{i1}+Z_{i2})\\
+    \bar{Z}_{\cdot j}&\coloneqq \frac{1}{n} \sum^{n}_{i=1} Z_{ij}
+\end{align*}
+と定めると，
+\begin{align*}
+    S_{A}&= \sum^{2}_{j=1}\sum^{n}_{i=1} (\bar{Z}_{i\cdot} - \bar{Z}_{\cdot\cdot})^{2}\\
+    S_{B}&= \sum^{n}_{i=1}\sum^{2}_{j=1} (Z_{ij} - \bar{Z}_{\cdot j})^{2}\\
+    S_{E}&=\sum^{n}_{i=1} \sum^{2}_{j=1} (Z_{ij} - \bar{Z}_{i\cdot}-\bar{Z}_{\cdot j} + \bar{Z}_{\cdot\cdot})^{2}
+\end{align*}
+このとき，$S_{A}^{2}/\sigma^{2}$は自由度$\phi_A$の非心$\chi^{2}$分布に従い，$S_{B}^{2}\sigma^{2}$は自由度$\phi_B$の非心$\chi^{2}$分布に従い，$S_{E}^{2}/\sigma^{2}$は自由度$\phi_E$の$\chi^{2}$分布に従う．また，このとき，$S_{A},S_{B},S_{E}$は独立である．
+よって，仮説$\theta=0$のもとでは$S_{B}$が中心$\chi^{2}$分布に従い，
+\begin{align*}
+    \frac{S^{2}_{A}\phi_{E}}{S^{2}_{E}\phi_{A}}&\sim F(\phi_{A},\phi_{E})
+\end{align*}
+となり，仮説$\mu_{i}\equiv\mu$のもとでは$S_{A}$が中心$\chi^{2}$分布に従い，
+\begin{align*}
+    \frac{S^{2}_{B}\phi_{E}}{S^{2}_{E}\phi_{B}}&\sim F(\phi_{B},\phi_{E})
+\end{align*}
+となる
+\subsection{}
+$\theta$に関する検定において，$X_{1}$を欠測した場合，$Y_{1}$の値からは$\theta,\mu_{i}$の寄与が分離できないため，$Y_{1}$を利用して検定を行うことはできない．\par
+実際，$S_{A}$の定義の和の一行目が$0$となっており，残りの$n-1$個の和の形になっている．
+\subsection{}
+$\mu_{i}$に関する検定において，$X_{1}$を欠測した場合でも，$Y_{1}$と他の$Y_{i}$の値から，$\mu_1$の大きさに関する検定ができる．
+\par
+実際，$S_{B}$の定義の和の一行目は$Y_{1}$を含んでおり，他の$Y_{i}$とも比較できる形になっている．
+\newpage
 \part{2023年}
 1,2は簡単なので省略．問1で推定量$\alpha$の$\beta$に対する漸近相対効率を問われているが，この定義は
 \begin{align}
