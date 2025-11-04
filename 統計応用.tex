@@ -1,0 +1,109 @@
+\documentclass[a4paper,11pt]{ltjsarticle}
+\usepackage[no-math]{luatexja-fontspec}
+\usepackage[scale=0.9]{roboto}
+\usepackage{physics2}
+\usepackage{derivative}
+\usepackage{bm}
+\usephysicsmodule{ab}
+\usepackage{amsthm}
+\input{newmacro.tex}
+\title{統計検定(社会科学)}
+\author{田淵進}
+\theoremstyle{definition}
+\newtheorem{remark}{Remark}
+\newtheorem{definition}[remark]{Definition}
+\newtheorem{theorem}[remark]{Theorem}
+\usepackage[japanese,english]{babel}
+\begin{document}
+\maketitle
+\part{2023年}
+\section{}
+略
+\section{}
+\subsection{}
+\subsection{}
+一般に、価格および数量ラスパイレス指数はそれぞれ
+\begin{align*}
+    P_{L}&=\frac{\sum_{i}^{n}p_{1i}n_{0i}}{\sum_{i}^{n}p_{0i}n_{0i}}\times100\\
+    Q_{L}&=\frac{\sum_{i}^{n}p_{0i}n_{1i}}{\sum_{i}^{n}p_{0i}n_{0i}}\times100
+\end{align*}
+で与えられ、パーシェ指数はそれぞれ
+\begin{align*}
+    P_{P}&=\frac{\sum_{i}^{n}p_{1i}n_{1i}}{\sum_{i}^{n}p_{0i}n_{1i}}\times100\\
+    Q_{P}&=\frac{\sum_{i}^{n}p_{0i}n_{0i}}{\sum_{i}^{n}p_{0i}n_{1i}}\times100
+\end{align*}
+で与えられる。よって表1からの計算にっよって、ラスパイレス価格指数は
+\begin{align*}
+    P_{L}&=\frac{10363\times 43.12+2272\times 118.17}{10363\times 44.74+2272\times 119.86} \times 100\\
+        &=0.9718\times 100=97.18
+\end{align*}
+となる。
+\subsection{}
+前問の定義から
+\begin{align*}
+    P_{L}&=\bar{x}\\
+    Q_{L}&=\bar{y}
+\end{align*}
+である。
+\subsection{}
+いま、
+\begin{align*}
+    s_{xy}&=\sum^{n}_{n=1}w_{i}(x_{i}-\bar{x})(y_{i}-\bar{y})\\
+    &=\sum^{n}_{i=1}w_{i}x_{i}y_{i}-\bar{y}\sum^{n}_{i=1}w_{i}x_{i}-\bar{x}\sum^{n}_{i=1}w_{i}y_{i}+\bar{x}\bar{y}\sum^{n}_{i=1}w_{i}\\
+    &=\sum^{n}_{i=1}w_{i}x_{i}y_{i}-P_{L}Q_{L}
+\end{align*}
+とかける。ここで、
+\begin{align*}
+    \sum^{n}_{i=1}w_{i}x_{i}y_{i}&=\frac{\sum_{i}^{n}p_{1i}n_{1i}}{\sum_{i}^{n}p_{0i}n_{0i}}\\
+    &=\frac{\sum_{i}^{n}p_{1i}n_{1i}}{\sum_{i}^{n}p_{0i}n_{1i}}\times\frac{\sum_{i}^{n}p_{0i}n_{1i}}{\sum_{i}^{n}p_{0i}n_{0i}}\\
+    &=P_{P}Q_{L}
+\end{align*}
+となるので、
+\begin{align*}
+    s_{xy}&=P_{P}Q_{L}-P_{L}Q_{L}\\
+    &=Q_{L}(P_{P}-P_{L})
+\end{align*}
+と示される。
+\subsection{}
+$P_{L}$と$Q_{L}$の大小関係は$s_{xy}$の符号と等しい。一般的に、価格と数量の間には負の相関がある場合が多いため、$P_{P}$は$P_{L}$より大きくなる傾向がある。
+\newpage
+\section{}
+\subsection{}
+$t=1,T$のみのデータを使った場合、モデルのLSEは
+\begin{align*}
+    Y_{t}&=\tilde{\alpha}+\tilde{\beta} X_{t}+\epsilon_{t}\quad(t=1,T)
+\end{align*}
+を満たすので、
+\begin{align*}
+    \tilde{\beta}&=\frac{Y_{T}-Y_{1}}{X_{T}-X_{1}}\\
+    \tilde{\alpha}&=\frac{1}{2}(Y_{1}+Y_{T})-\tilde{\beta}\frac{1}{2}(X_{1}+X_{T})
+    &=\frac{X_{1}}{X_{T}-X_{1}}Y_{1}-\frac{X_{T}}{X_{T}-X_{1}}Y_{T}
+\end{align*}
+となるので、
+\begin{align*}
+    V[\tilde{\alpha}]&=\frac{X_{1}^{2}+X_{T}^{2}}{(X_{T}-X_{1})^{2}}\sigma^{2}\\
+    V[\tilde{\beta}]&=\frac{2}{(X_{T}-X_{1})^{2}}\sigma^{2}
+\end{align*}
+である。
+\subsection{}
+いま、$m=(X_{1}+X_{T})/2$とおいて
+\begin{align*}
+    \sum^{T}_{t=1}(X-\bar{X})^{2}=\frac{(X_{T}-X_{1})^{2}}{2}+2\pab{\bar{X}-m}^{2}+\sum^{T-1}_{t=2}(X_{t}-\bar{X})^{2}
+\end{align*}
+と変形できるので、条件は
+\begin{align*}
+    \bar{X}=m\\
+    X_{2}=\cdots=X_{T-1}=m
+\end{align*}
+である。
+\subsection{}
+前問の値を用いて、
+\begin{align*}
+    V[\tilde{Y}_{T+1}]&=V[\tilde{\alpha}+\tilde{\beta}X_{T+1}]\\
+    &=V\bab{\frac{X_{T+1}-X_{T}}{X_{T}-X_{1}}Y_{1}+\frac{X_{T+1}-X_{1}}{X_{T}-X_{1}}Y_{T}}\\
+    &=\frac{(X_{T+1}-X_{T})^{2}+(X_{1}-X_{T+1})^{2}}{(X_{T}-X_{1})^{2}}\sigma^{2}
+\end{align*}
+\subsection{}
+モデルが正しいと仮定したとき、$3$点で測る際に最も$V[\tilde{\beta}]$を小さくするには、$X_{c}$を$X_{1}$または$X_{T}$と同じ値にするのが合理的である。\par
+一方、単回帰であるかどうかを検証するためには、直線からのズレが大きくなる可能性が大きい$X_{c}=(X_{1}+X_{T})/2$が適当である。
+\end{document}
