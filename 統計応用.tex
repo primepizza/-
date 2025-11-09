@@ -19,7 +19,7 @@
 \usepackage[japanese,english]{babel}
 \begin{document}
 \maketitle
-\part{2023年}
+\part{2022年}
 \section{}
 略
 \section{}
@@ -278,4 +278,58 @@ $\varepsilon_{1},\varepsilon_{2}$は互いに独立であるので，$\theta+\va
     P(Y\leq 128\mid X=132)=P(Z\leq -1/\sqrt{63})\approx 0.45
 \end{align*}
 となる．ここで$Z$は標準正規分布に従う確率変数とする．
+\part{2023年}
+\section{}
+\subsection{}
+いま、与えられた条件から
+\begin{align*}
+    \bar{x}&\approx3.7327\\
+    \bar{y}&\approx27.49\\
+    \bar{x^{2}}&\approx 16.15\\
+    \bar{y^{2}}&\approx 855.27\\
+    \bar{xy}&\approx 108.95
+\end{align*}
+よって、$n=33$であることから、不偏分散は
+\begin{align*}
+    s_{x}^{2}&=\frac{33}{32}\pab{\bar{x^{2}}-\bar{x}^{2}}\approx 2.33\\
+    s_{y}^{2}&=\frac{33}{32}\pab{\bar{y^{2}}-\bar{y}^{2}}\approx \frac{33}{32}\pab{855.27 - 27.49^{2}} \approx 102.68\\
+    s_{xy}&=\frac{33}{32}\pab{\bar{xy}-\bar{x}\bar{y}}\approx \frac{33}{32}\pab{108.95 - 3.7327\times 27.49} \approx 6.54
+\end{align*}
+また、相関係数は
+\begin{align*}
+    r_{xy}&=\frac{s_{xy}}{\sqrt{s_{x}^{2}s_{y}^{2}}}\approx \frac{6.54}{\sqrt{2.33\times 102.68}}\approx 0.42
+\end{align*}
+\subsection{}
+デルタ法とは、観測値の関数$g(t_{1},\ldots,t_{n})$で表される統計量の分散を、$g$の各変数の平均値周りでの1次近似によって求める手法である。いま、
+\begin{align*}
+    \hat{R}=g(\bar{x},\bar{y})&\coloneqq \frac{\bar{y}}{\bar{x}}\\
+    &\approx g(\mu_{X},\mu_{X})+\pdv{g(\mu_{X},\mu_{X})}{\mu_{X}}(\bar{x}-\mu_{X})+\pdv{g(\mu_{X},\mu_{Y})}{\mu_{Y}}(\bar{y}-\mu_{Y})\\
+    &=\frac{\mu_{Y}}{\mu_{X}}-\frac{\mu_{Y}}{\mu_{X}^{2}}(\bar{x}-\mu_{X})+\frac{1}{\mu_{X}}(\bar{y}-\mu_{Y})
+\end{align*}
+と近似されるので、求める分散は
+\begin{align*}
+    V\bab{\hat{R}}&=\frac{1}{\mu_{X}^{2}}V\bab{\bar{y}-R\bar{x}}\\
+    &=\frac{1}{n\mu_{X}^{2}}\pab{E\bab{(Y-RX)^{2}}-0}
+\end{align*}
+となる。
+\subsection{}
+前問の結果を用いて
+\begin{align*}
+    V\bab{\hat{\mu_{Y}}}&=\mu^{2}_{X}V[\hat{R}]\\
+        &=\frac{1}{n}\pab{V[Y]+R^{2}V[X]-2R\Cov\pab{X,Y}}\\
+        &=\frac{\mu^{2}_{Y}}{n}\pab{\frac{\sigma^{2}_{Y}}{\mu_{Y}^{2}}+\frac{\sigma_{X}^{2}}{\mu^{2}_{Y}}\frac{\mu^{2}_{Y}}{\mu^{2}_{X}}-2\frac{\Cov{(X,Y)}}{\mu_{X}\mu_{Y}}}\\
+        &=\frac{\mu^{2}_{Y}}{n}\pab{\mathrm{cv}(Y)^{2}+\mathrm{cv}(X)^{2}-2\rho\mathrm{cv}(X)\mathrm{cv}(Y)}
+\end{align*}
+と求まる。
+\subsection{}
+$\hat{R}=\bar{y}/\mu_{X}$としたときの分散は$V_{1}\coloneqq \sigma^{2}_{Y}/\mu^{2}_{X}$である。一方、$\bar{y}/\bar{x}$とした場合の分散は、前問での計算から
+\begin{align*}
+    V\bab{\hat{R}}\coloneqq V_{2}= \frac{1}{n\mu_{X}^{2}}\pab{V[Y]+R^{2}V[X]-2R\Cov(X,Y)}
+\end{align*}
+となるので、$V_{1}>V_{2}$となるのは
+\begin{align}
+    R\sigma^{2}_{X}&<2\frac{\sigma_{XY}}{\sigma_{X}\sigma_{Y}}\\
+    \frac{\mathrm{cv}(X)}{2\mathrm{cv}(Y)}&<\rho
+\end{align}
+となるときである。よって、観測値ヵら求まる$\mathrm{cv}(X),\mathrm{cv}(Y),\rho$を参考に、どちらを使うか切り替えるのが望ましい。
 \end{document}
