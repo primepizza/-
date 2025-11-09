@@ -278,10 +278,12 @@ $\varepsilon_{1},\varepsilon_{2}$は互いに独立であるので，$\theta+\va
     P(Y\leq 128\mid X=132)=P(Z\leq -1/\sqrt{63})\approx 0.45
 \end{align*}
 となる．ここで$Z$は標準正規分布に従う確率変数とする．
+\newpage
 \part{2023年}
+\setcounter{section}{0}
 \section{}
 \subsection{}
-いま、与えられた条件から
+いま，与えられた条件から
 \begin{align*}
     \bar{x}&\approx3.7327\\
     \bar{y}&\approx27.49\\
@@ -289,29 +291,29 @@ $\varepsilon_{1},\varepsilon_{2}$は互いに独立であるので，$\theta+\va
     \bar{y^{2}}&\approx 855.27\\
     \bar{xy}&\approx 108.95
 \end{align*}
-よって、$n=33$であることから、不偏分散は
+よって，$n=33$であることから，不偏分散は
 \begin{align*}
     s_{x}^{2}&=\frac{33}{32}\pab{\bar{x^{2}}-\bar{x}^{2}}\approx 2.33\\
     s_{y}^{2}&=\frac{33}{32}\pab{\bar{y^{2}}-\bar{y}^{2}}\approx \frac{33}{32}\pab{855.27 - 27.49^{2}} \approx 102.68\\
     s_{xy}&=\frac{33}{32}\pab{\bar{xy}-\bar{x}\bar{y}}\approx \frac{33}{32}\pab{108.95 - 3.7327\times 27.49} \approx 6.54
 \end{align*}
-また、相関係数は
+また，相関係数は
 \begin{align*}
     r_{xy}&=\frac{s_{xy}}{\sqrt{s_{x}^{2}s_{y}^{2}}}\approx \frac{6.54}{\sqrt{2.33\times 102.68}}\approx 0.42
 \end{align*}
 \subsection{}
-デルタ法とは、観測値の関数$g(t_{1},\ldots,t_{n})$で表される統計量の分散を、$g$の各変数の平均値周りでの1次近似によって求める手法である。いま、
+デルタ法とは，観測値の関数$g(t_{1},\ldots,t_{n})$で表される統計量の分散を，$g$の各変数の平均値周りでの1次近似によって求める手法である．いま，
 \begin{align*}
     \hat{R}=g(\bar{x},\bar{y})&\coloneqq \frac{\bar{y}}{\bar{x}}\\
     &\approx g(\mu_{X},\mu_{X})+\pdv{g(\mu_{X},\mu_{X})}{\mu_{X}}(\bar{x}-\mu_{X})+\pdv{g(\mu_{X},\mu_{Y})}{\mu_{Y}}(\bar{y}-\mu_{Y})\\
     &=\frac{\mu_{Y}}{\mu_{X}}-\frac{\mu_{Y}}{\mu_{X}^{2}}(\bar{x}-\mu_{X})+\frac{1}{\mu_{X}}(\bar{y}-\mu_{Y})
 \end{align*}
-と近似されるので、求める分散は
+と近似されるので，求める分散は
 \begin{align*}
     V\bab{\hat{R}}&=\frac{1}{\mu_{X}^{2}}V\bab{\bar{y}-R\bar{x}}\\
     &=\frac{1}{n\mu_{X}^{2}}\pab{E\bab{(Y-RX)^{2}}-0}
 \end{align*}
-となる。
+となる．
 \subsection{}
 前問の結果を用いて
 \begin{align*}
@@ -320,16 +322,150 @@ $\varepsilon_{1},\varepsilon_{2}$は互いに独立であるので，$\theta+\va
         &=\frac{\mu^{2}_{Y}}{n}\pab{\frac{\sigma^{2}_{Y}}{\mu_{Y}^{2}}+\frac{\sigma_{X}^{2}}{\mu^{2}_{Y}}\frac{\mu^{2}_{Y}}{\mu^{2}_{X}}-2\frac{\Cov{(X,Y)}}{\mu_{X}\mu_{Y}}}\\
         &=\frac{\mu^{2}_{Y}}{n}\pab{\mathrm{cv}(Y)^{2}+\mathrm{cv}(X)^{2}-2\rho\mathrm{cv}(X)\mathrm{cv}(Y)}
 \end{align*}
-と求まる。
+と求まる．
 \subsection{}
-$\hat{R}=\bar{y}/\mu_{X}$としたときの分散は$V_{1}\coloneqq \sigma^{2}_{Y}/\mu^{2}_{X}$である。一方、$\bar{y}/\bar{x}$とした場合の分散は、前問での計算から
+$\hat{R}=\bar{y}/\mu_{X}$としたときの分散は$V_{1}\coloneqq \sigma^{2}_{Y}/\mu^{2}_{X}$である．一方，$\bar{y}/\bar{x}$とした場合の分散は，前問での計算から
 \begin{align*}
     V\bab{\hat{R}}\coloneqq V_{2}= \frac{1}{n\mu_{X}^{2}}\pab{V[Y]+R^{2}V[X]-2R\Cov(X,Y)}
 \end{align*}
-となるので、$V_{1}>V_{2}$となるのは
-\begin{align}
-    R\sigma^{2}_{X}&<2\frac{\sigma_{XY}}{\sigma_{X}\sigma_{Y}}\\
+となるので，$V_{1}>V_{2}$となるのは
+\begin{align*}
+    R\sigma^{2}_{X}&<2\frac{\sigma_{XY}}{\sigma_{X}\sigma_{Y}}
+\end{align*}
+\begin{align*}
     \frac{\mathrm{cv}(X)}{2\mathrm{cv}(Y)}&<\rho
-\end{align}
-となるときである。よって、観測値ヵら求まる$\mathrm{cv}(X),\mathrm{cv}(Y),\rho$を参考に、どちらを使うか切り替えるのが望ましい。
+\end{align*}
+となるときである．よって，観測値ヵら求まる$\mathrm{cv}(X),\mathrm{cv}(Y),\rho$を参考に，どちらを使うか切り替えるのが望ましい．
+\newpage
+\section{}
+\subsection{}
+$X$がパレート分布$(a,b)$に従うとき，
+\begin{align*}
+    E[X]&=\int^{\infty}_{n}\frac{ab^{a}x}{x^{a+1}}dx\\
+    &=ab^{a}\bab{\frac{-1}{(a-1)x^{a-1}}}^{\infty}_{b}
+    &=\frac{ab}{a-1}
+\end{align*}
+となり，累積分布関数は
+\begin{align*}
+    F(x)&=\int^{x}_{b}\frac{ab^{a}}{t^{a+1}}dt\\
+    &=\bab{\frac{-b^{a}}{t^{a}}}^{x}_{b}\\
+    &=1-\pab{\frac{b}{t}}^{a}
+\end{align*}
+となる．よって中央値は$m=b\sqrt[a]{2}$である．
+\subsection{}
+$c>b$として，条件付き累積分布を考えると，
+\begin{align*}
+    F(x\mid x>c)&=P(X\leq x\mid x>c)\\
+    &=\frac{P(c<X\leq x)}{P(X>c)}\\
+    &=\frac{\pab{F(x)-F(c)}}{F(c)}\\
+    &=\pab{\frac{c}{b}}^{a}\pab{\pab{\frac{b}{c}}^{a}-\pab{\frac{b}{x}}^{a}}\\
+    &=1-\pab{\frac{c}{x}}
+\end{align*}
+となるので，$X\mid X>c$はパラメータ$(a,c)$のパレート分布に従う．よって，下限で条件づけたパレート分布は再びパレート分布に従うことがわかる．
+\subsection{}
+パレート分布における80:20の法則とは，上位2割の領域における期待値が，全体の期待値の8割を占める状態だと考えられる．すなわち，
+\begin{align*}
+    P(X>x_0)=0.2
+\end{align*}
+となるような$x_{0}$に対して，
+\begin{align*}
+    E[X,X>x_{0}]=\int^{\infty}_{x_{0}}\frac{ab^{a}}{x^{a}}dx=0.8E[X]
+\end{align*}
+が満たされれば良い．いま，$b=1$
+\begin{align*}
+    P(X>x_0)&=\pab{\frac{1}{x_{0}}}^{a}=0.2\\
+    E[X,X>x_{0}]&=\pab{\frac{1}{x_{0}}}^{a-1}=0.8
+\end{align*}
+なので，$x_{0}=4$であり，$a=\log{5}/\log{4}$\\
+\subsection{}
+$b=1,a=1$のとき，上位20\%に入るには前問の結果から$x=4$(百万)である．また，上位4\%に入るには，上位20\%の中で更に上位20\%のに入ればよいので，前問の結果より，$b=4$と取り直すことで$x=16$(百万)が得られる．
+\newpage
+\section{}
+\subsection{}
+条件より，
+\begin{align*}
+    E[\exp(kU)]&=\frac{1}{\sqrt{2\pi\sigma^{2}_{u}}}\int_{\Real}\exp\pab{\frac{-u^{2}}{2\sigma^{2}_{u}}+ku}du\\
+    &=\frac{1}{\sqrt{2\pi\sigma^{2}_{u}}}\int_{\Real}\exp\pab{\frac{-u^{2}+2ku-k^{2}}{2\sigma^{2}_{u}}+\frac{k^{2}\sigma^{2}_{u}}{2}}du\\
+    &=\exp\pab{\frac{k^{2}}{2}\sigma^{2}_{u}}
+\end{align*}
+\subsection{}
+$Y_{t}=e^{\alpha_{0}}Y^{\alpha_{1}}_{t-1}\exp(U_{t})$であることに注意すると，
+\begin{align*}
+    \Coex{Y_{t}}{Y_{t-1},\ldots,Y_{1}}&=\Coex{Y_{t}}{Y_{t-1}}\\
+    &=e^{\alpha_{0}}Y^{\alpha_{1}}_{t-1}E\bab{\exp(U_{t})}
+    &=\exp\pab{\alpha_{0}+\sigma^{2}_{u}/2}Y^{\alpha_{1}}_{t-1}
+\end{align*}
+となるので，$\alpha_{0}=-\sigma^{2}/2,\alpha_{1}=1$がマルチンゲールとなるための条件である．
+\subsection{}
+$T$までの値をもとに，$Y_{T+1}$の値を予測すると，予測分散は，
+\begin{align*}
+    V\bab{\tilde{Y}_{T+1}}&=V\bab{e^{\alpha_{0}}Y^{\alpha_{1}}_{T}\exp(U_{T+1})}\\
+    &=\exp\pab{-\sigma^{2}}Y^{2}_{T}\pab{E[\exp(U_{T+1}^{2})]-E[\exp(U_{T+1})]^{2}}\\
+    &=Y_{T}^{2}\pab{e^{\sigma^{2}_{u}}-1}\\
+\end{align*}
+となる．
+\subsection{}
+通常，回帰分析では最小二乗法によって推定量$\hat{\alpha_{1}}$を求め，中心極限定理より，$\sqrt{\hat{\alpha_{1}}-\alpha_1}$が正規分布に近似できることを利用して検定を行う．\par
+このとき，$\vab{\alpha_{1}}<1$においては，極限分布は$N(1,1-\alpha^{2})$となるが，$\alpha_{1}=1$においては正規分布に収束しないため，通常の$t$検定で検定することはできない．
+\newpage
+\section{}
+\subsection{}
+表から回帰係数を求めればいい．適当な二つの場合を持ってきて，男性の場合は
+\begin{align*}
+    7.2&=a+5b\\
+    7.8&=a+6b
+\end{align*}
+となるので，$a=4.2,b=0.6$となり，女性の場合は
+\begin{align*}
+    6.6&=a+5b\\
+    7.2&=a+6b\\
+\end{align*}
+となるので，$a=3.6,b=0.6$となる．よって，男性の方が同じ時間を働いたときの賃金が高いといえる．
+\subsection{}
+いま，労働時間と賃金の平均値を考える．同じ労働時間での賃金の平均値は予測値と一致することに注意すると，
+\begin{align*}
+    \bar{x}_{M}&=5\times 0.1+6\times0.15+7\times 0.4 +8\times 0.35=7\\
+    \bar{y}_{M}=\bar{\hat{y}}_{M}&=7.2\times 0.1+7.8\times0.15+8.4\times 0.4 +9.0\times 0.35=8.4\\
+    \bar{x}_{F}&=5\times 0.35+6\times0.4+7\times 0.15 +8\times 0.1=6\\
+    \bar{y}_{F}=\bar{\hat{y}}_{F}&=6.6\times 0.35+7.2\times0.4+7.8\times 0.15 +8.4\times 0.1 =7.2
+\end{align*}
+よって$y_{M}/x_{M}=y_{F}/x_{F}=1.2$となり，男女で等しくなる．
+\subsection{}
+まず，$y$の分散を求める必要がある．いま，各データ$(x_{i},y_{i})$は
+\begin{align*}
+    y_{i}=a+bx_{i}+u_{i}
+\end{align*}
+と表されるとする．ここで，$\hat{y}_{i}=a+bx_{i}$とおいて，全体のデータ数を$N$とすると，最小二乗法では
+\begin{align*}
+    Ns_{e}^{2}=\sum_{i=1}^{N}\pab{y_{i}-\tilde{y}_{i}}^{2}
+\end{align*}
+が最小化されるように$a,b$を決定する．ここで，$x_{i}$が固定されると$\tilde{y}_{i}$の値が決定されることに注意すると，
+\begin{align*}
+    Ns_{e}^{2}&=\sum\pab{y_{i}-\bar{y}+\bar{y}-\tilde{y}_{i}}^{2}\\
+    &=N\pab{V[y]+V[\tilde{y}]}-2\sum_{j=5,\ldots,8}\pab{\tilde{y}_{i}-\bar{y}}\sum_{x_{i}\equiv j}\pab{y_{i}-\bar{y}}\\
+    &=N\pab{V[y]+V[\tilde{y}]}-2V[\tilde{y}]\\
+    &=N\pab{V[y]-V[\tilde{y}]}
+\end{align*}
+となる．最小二乗推定を行った場合の$s_{e}^{2}$および$V[\tilde{y}]=V[\hat{y}]$は条件とあ耐えられた表から求まり，
+\begin{align*}
+    s_{e}^{2}&=0.972\\
+    V[\tilde{y}^{2}_{M}]&=\overline{\hat{y}^{2}}_{M}-\bar{y}_{M}^{2}=0.324\\
+    V[\tilde{y}^{2}_{F}]&=\overline{\hat{y}^{2}}_{F}-\bar{y}_{F}^{2}=0.324
+\end{align*}
+となるので，$V[y_{m}]=V[y_{F}]=0.324+0.972=1.296$と求まる．\par
+また，共分散$\Cov(x,y)$を考えると，$b$の最小二乗推定量が$\hat{b}=\Cov{x,y}/V[x]$と置かれていたことに注意すると，
+\begin{align*}
+    \Cov(x_M,y_M)&=\hat{b}_{M}\cdot V[x_{M}]=0.6\pab{\bar{x^{2}}_{M}-\bar{x}^{2}_{M}}=0.54\\
+    \Cov(x_F,y_F)&=\hat{b}_{F}\cdot V[x_{F}]=0.6\pab{\bar{x^{2}}_{F}-\bar{x}^{2}_{F}}=0.54\\
+\end{align*}
+と求まる．よって，最小二乗推定量を考えると，$\hat{d}=\Cov\pab{x,y}/V[y]$はともに$5/12$となる．一方で，
+\begin{align*}
+    \hat{c}_{M}&=\bar{x}_{M}-\hat{d}\bar{y}_{M}=3.5\\
+    \hat{c}_{F}&=\bar{x}_{F}-\hat{d}\bar{y}_{F}=3.0\\
+\end{align*}
+となる．特に同じ賃金$y=7.2$のもとでは，男性は6.5時間，女性は6.0時間の労働を行っている．
+\subsection{}
+前問で考察した通り．
+\section{}
+略．
 \end{document}
