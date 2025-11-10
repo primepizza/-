@@ -11,12 +11,95 @@
 \author{田淵進}
 \theoremstyle{definition}
 \newtheorem{remark}{Remark}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Image}{Im}
+\renewcommand{\Im}{\Image}
 \newtheorem{definition}[remark]{Definition}
 \newtheorem{theorem}[remark]{Theorem}
 \usepackage[japanese,english]{babel}
 \begin{document}
 \maketitle
+\part{2021年}
+\section*{1,2,3}
+略
+\setcounter{section}{3}
+\section{}
+\subsection*{4.1, 4.2, 4.3}
+\setcounter{subsection}{3}
+自明な計算から
+\begin{align*}
+    V[\bar{X}]&=\sigma^{2}/n\\
+    E[(X_{1}-X_{2})^{3}]&=0\\
+    E[Y_{i}Y_{j}Y_{k}]&=\begin{cases}
+        \tau&(i=j=k)\\
+        0&(\otherwise)
+    \end{cases}
+\end{align*}
+\subsection{}
+\begin{align*}
+    \sum^{n}_{i}(X_{i}-\bar{X})^{3}&=\sum^{n}_{i}(Y_{i}-\bar{X})^{3}\\
+    &=\sum^{n}_{i=1}\pab{Y_{i}^{3}-3Y_{i}^{2}\bar{Y}+3Y_{i}\bar{Y}^{2}-\bar{Y}^{3}}
+\end{align*}
+となるので，期待値を各項で計算して
+\begin{align*}
+   E\bab{\sum^{n}_{i}(X_{i}-\bar{X})^{3}} &=n\tau-3n\cdot \frac{\tau}{n} + 3n\cdot\frac{\tau}{n^{2}}+n\cdot\frac{n\cdot\tau}{n^{3}}\\
+    &=\tau\pab{n-3+\frac{2}{m}}
+\end{align*}
+\subsection{}
+まず，
+\begin{align*}
+    \hat\tau&=\pab{\sum_{i=1}^{n}a_{i}\pab{Y_{i}+\mu}}^{3}\\
+            &=\pab{\pab{\sum_{i=1}^{n}a_{i}Y_{i}}+\pab{\sum_{i=1}^{n}a_{i}\mu}}^{3}\\
+            &=\pab{\sum_{i=1}^{n}a_{i}Y_{i}}^{3}+3\pab{\sum_{i=1}^{n}a_{i}Y_{i}}^{2}\pab{\sum_{i=1}^{n}a_{i}\mu}+3\pab{\sum_{i=1}^{n}a_{i}Y_{i}}\pab{\sum_{i=1}^{n}a_{i}\mu}^{2}+\pab{\sum_{i=1}^{n}a_{i}\mu}^{3}
+\end{align*}
+この期待値を取ると
+\begin{align*}
+    \tau\pab{\sum_{i=1}^{n}a_{i}^{3}}+3\mu\sigma^{2}\pab{\sum_{i=1}^{n}a_{i}^{2}}\pab{\sum_{i=1}^{n}a_{i}}+\mu\pab{\sum_{i=1}^{n}a_{i}}^{3}
+\end{align*}
+となるので，求める条件は
+\begin{align*}
+    \sum_{i=1}^{n}a_{i}&=0\\
+    \sum_{i=1}^{n}a_{i}^{3}&=\tau
+\end{align*}
+となる．
+\newpage
+\section{}
+\subsection{}
+\begin{align*}
+    V[y]=E[(Lx-L\mu)^{T}(Lx-L\mu)]&=L^{T}V[x]L\\
+    &=L^{T}L
+\end{align*}
+\subsection{}
+共分散が$0$であれば良いので，
+\begin{align*}
+    \Cov\pab{Lx,Mx}=L^{T}M=O
+\end{align*}
+が求める条件である．
+\subsection{}
+\subsection{}
+一般に，$L,M$に対して，
+\begin{align*}
+    LM^{T}=AMM^{T}
+\end{align*}
+が成り立つような$l\times m$行列$A$が存在するための条件を考える．両辺を転置して
+\begin{align}
+    \label{eq:exist-A}
+    ML^{T}=MM^{T}A^{T}
+\end{align}
+となる．ここで，一般に$\Im{M}=\Im{MM^{T}}$が成り立つことに注意すると，$\Im{ML^{T}}\subset \Im{MM^{T}}$となるので，任意の$u\in \Im{ML^{T}}\subset$に対して，$v\in \Real^{m}$を取って
+\begin{align*}
+    u=(MM^{T})v
+\end{align*}
+となる$v$が存在する．特に，$r=rank(M)$として，一次独立な$x_{1},\ldots,x_{r}\in \Real^{l}$に対して，$Mx_{i}=(MM^{T})v_{i}$となる$v_{i}\in \Real^{m}$が存在するので，$A^{T}$を$A^{T}x_{i}=v_{i}$かつその他の空間で$0$となる写像として特徴づければ，$A$は常に存在することがわかる．\par
+特に$M$がフルランクであれば，$MM^{T}$が可逆になるので，
+\begin{align*}
+    A=(MM^{T})^{-1}LM^{T}
+\end{align*}
+として取ることができる．
+
 \part{2022年}
+\setcounter{section}{0}
 \section{}
 \subsection{}
 $A,B,C$がすべて独立のとき，
