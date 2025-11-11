@@ -19,7 +19,165 @@
 \usepackage[japanese,english]{babel}
 \begin{document}
 \maketitle
+\part{2021年}
+\section{}
+\subsection{}
+第$h$層の店舗の営業利益を$X_{hi},i=1,\ldots,N_{i}$とおくと，
+\begin{align*}
+    \mu&=\frac{1}{1000}\pab{700\times 100 +200\times 200 + 100\times 500}=160\\
+    \sigma^{2}&=\frac{1}{N}\sum^{3}_{h=1}\sum^{N_{h}}_{i=1}(X_{hi}-\mu)^{2}\\
+             &=\frac{1}{1000}\bab{\sum_h\sum_{i}\pab{X_{hi}-\mu_{h}}^{2}+\sum_h(\mu_h-\mu)\sum_i(X_{hi}-\mu_h)+\sum_hN_h(\mu_h-\mu)^2}\\
+             &=0.7\times 10^2+0.2\times 50^2+0.1\times100^2\\
+             &\quad +0\\
+             &\quad +0.7\times100^2+0.2\times200^2+0.1\times 500^2-160^2\\
+             &=15970
+\end{align*}
+と計算できる．
+\subsection{}
+条件から，有限母集団修正を考えないので，
+\begin{align*}
+    E[\bar{X}]&=160\\
+    V[\bar{X}]&=159.7
+\end{align*}
+である．
+\subsection{}
+条件から，$E[\hat{Y}]=160$である．分散を考えると，第$h$層の分散を$\sigma^{2}_{h}$
+\begin{align*}
+    V[\hat{Y}]&=\sum_{h}\pab{\frac{N_h}{N}}^{2}\cdot\frac{\sigma^{2}_{h}}{n_{h}}\\
+\end{align*}
+となる．比例配分では
+\begin{align*}
+    V[\hat{Y}]&=\frac{0.7^2}{70}\times 10^2+\frac{0.2^2}{20}\times 50^2+\frac{0.1^2}{10}\times 100^2\\
+            &=15.7
+\end{align*}
+である．問題文で与えられた条件からネイマン配分は
+\begin{align*}
+    n_1:n_2:n_3&=700\times 10:200\times 50:100\times 100\\
+                &=7:10:10
+\end{align*}
+となるので，$n_{1}=26,n_2=n_3=37$となる．このとき，
+\begin{align*}
+    V[\hat{Y}]&=\frac{0.7^2}{26}\times 10^2+\frac{0.2^2}{37}\times 50^2+\frac{0.1^2}{37}\times 100^2\\
+    &\approx7.29
+\end{align*}
+となる．
+\section{}
+略
+\newpage
+\section{}
+いま，$J$のランクは1で，$0$でない固有値は$n$である．$J$の固有値$n$のベクトル$v$に対して，$Rv=(1-\rho)Iv+\rho Jv=(1+\rho(n-1))v$となり，$0$のベクトルに対しては$Rv=(1-\rho)v$となる．$0$に対する固有ベクトルは$n-1$の重複度を持つので，$R$の固有値は$1+\rho(n-1)$と$1-\rho$の二つである．以上から，求める条件は
+\begin{align*}
+    \frac{-1}{n-1}< \rho<1
+\end{align*}
+である．
+\subsection{}
+前問を利用すると，$1-\rho$に対応する固有空間の基底$(v_{1},\ldots,v_{n-1})$は$J$の固有値$0$に対応する固有空間の基底であることに注意すると，
+\begin{align*}
+    \frac{1}{1-\rho}Iv_{i}-\frac{\rho}{(1-\rho)(1+(n-1)\rho)}Jv_{i}&=\frac{1}{1-\rho}v_{i}
+\end{align*}
+が成り立つ．また，$1+\rho(n-1)$に対応する固有ベクトル$v_{i}$は，$J$の固有値$n$の固有ベクトルであるので，
+\begin{align*}
+    \frac{1}{1-\rho}Iv_{n}-\frac{\rho}{(1-\rho)(1+(n-1)\rho)}Jv_{n}&=\frac{1}{1+(n-1)\rho}v_{n}
+\end{align*}
+よって，各固有ベクトル$v_{1},\ldots,v_{n}$について
+\begin{align*}
+    R\pab{\frac{1}{1-\rho}I-\frac{\rho}{(1-\rho)(1+(n-1)\rho)}J}v_{n}&=v_{n}
+\end{align*}
+であるので，逆行列が示された．
+\subsection{}
+定義から，
+\begin{align*}
+    E[b]&=(X^{T}X)^{-1}X^{T}E[Y]=(X^{T}X)^{-1}X^{T}Xb\\
+    &=b
+\end{align*}
+であり，$\sum x_{i}=0$に注意すると，
+\begin{align*}
+    X^{T}X&=\begin{pmatrix}
+        n^2&0\\
+        0&\sum x_i^{2}
+    \end{pmatrix}\\
+    (X^{T}X)^{-1}&=\begin{pmatrix}
+        1/n^2&0\\
+        0&1/\pab{\sum x_i^{2}}
+    \end{pmatrix}\\
+    X^{T}JX&=\begin{pmatrix}
+        n^{2}&0\\
+        0&0&
+    \end{pmatrix}
+\end{align*}
+となることに注意すると，
+\begin{align*}
+    V[b]&=(X^{T}X)^{-1}X^{T}V[Y]X(X^{T}X)^{-1}\\
+        &=\sigma^2(X^{T}X)^{-1}X^{T}\pab{(1-\rho)I+\rho J}X(X^{T}X)^{-1}\\
+        &=\sigma^2(1-\rho)\begin{pmatrix}
+        1/n^2&0\\
+        0&1/\pab{\sum x_i^{2}}
+    \end{pmatrix}+
+    \sigma^2\rho\begin{pmatrix}
+        1/n^2&0\\
+        0&1/\pab{\sum x_i^{2}}
+    \end{pmatrix}\begin{pmatrix}
+        n^{2}&0\\
+        0&0&
+    \end{pmatrix}\begin{pmatrix}
+        1/n^2&0\\
+        0&1/\pab{\sum x_i^{2}}
+    \end{pmatrix}\\
+    &=\sigma^2\begin{pmatrix}
+        \frac{1-\rho}{n}+\rho&0\\
+        0&\frac{1-\rho}{\sum x_i^2}
+    \end{pmatrix}
+\end{align*}
+と計算できる．
+\subsection{}
+前問の結果から，$\beta_{1}$の推定は$\rho$が1に近いほど分散が小さくなる一方で，$\beta_0$の推定という観点からは，$n\to\infty$に置いても分散が$0$に収束しないため，一致性がなくなる．
+\subsection{}
+共変量$u_i$の仮定として，観測範囲，特に地域ごとに決まる確率変数$u$を取り，$u_i\equiv U$であるとすると，最も単純な形でモデル化される．このとき前問までの推定は，未知な$u$によって$U=u$と固定されたもとでの推定
+\begin{align*}
+    Y=(\beta_0+u)+X\beta_1+\varepsilon_i
+\end{align*}
+に対応する．このとき，$V[b_0]$は，本来の$\beta_0$のOLSの分散に加え，本来評価すべき$V[U]$の加わった値になっていた．\par
+$U$を観測したうえで推定を行うと，$V[U]$の影響は取り除かれるので，OLSの精度が向上すると考えられる．
+\newpage
+\section{}
+\subsection{}
+表から計算して，$23.6$となる．
+\subsection{}
+詳細は省略．
+\begin{align*}
+    y=\alpha+\beta_1F_1+\beta_2F_2
+\end{align*}
+と老いて，一次方程式を溶け倍．このとき，$\alpha=24.7, \beta_1=4.0, \beta_2=-0.5$となる．
+\subsection{}
+自由度調整済み決定係数$R^{2}$とは，全変動$S_T^2$，回帰変動$S_R^2$，残差変動$S_E^2$を用いて，決定係数
+\begin{align*}
+    R^{2}=\frac{S_R^2}{S_T^2}=1-\frac{S_E^2}{S_T^2}
+\end{align*}
+に対して，残差変動の自由度$\phi_E$と全変動の自由度$\phi_T$を用いて調整をかけたもので，
+\begin{align*}
+    R^{*2}=1-\frac{S_E^2/\phi_E}{S_T/\phi_T}
+\end{align*}
+とかける．よって表の値から
+\begin{align*}
+    R^{2}&=\frac{409.50}{429.38}\approx0.954\\
+    R^{*2}&=1-\frac{19.88/47}{429.38/49}\approx0.952
+\end{align*}
+であり，誤差分散は$s^{2}=0.423$．標準誤差は$s=\sqrt{0.423}=0.650$となる．
+\subsection{}
+一般に，回帰係数の推定値の標準誤差とは，OLSの分散$V[\hat{\beta}]$の$\sigma^{2}$を残差分散$s^{2}$で置き換えたものになる．特に$(X^TX)^{-1}$の第$J$対角成分を$C_j$とおくと，各係数のOLSの分散が$\sigma^2C_j$となることに注意して，
+\begin{align*}
+    \mathrm{s.e. }(\hat{\alpha})&=\sqrt{s^{2} C_{1}}\\
+    \mathrm{s.e. }(\hat{\beta_1})&=\sqrt{s^{2} C_{2}}\\
+    \mathrm{s.e. }(\hat{\beta_2})&=\sqrt{s^{2} C_{3}}
+\end{align*}
+となる．
+\subsection{}
+前問で計算したように，各値は回帰変動と残差変動の値と自由度から求まる．ここで，二つのモデルの間で$y_i$に対する予測値$\hat{y}_i$が等しければ回帰変動$\sum(y_i-\hat{y}_i)^{2}$は同じ値が生じる．よって，残差変動も同じ値であり，自由度も変わらないため，$R^{2},s^2$などは同じ値となる．\par
+ここで，ダミー変数の取り方が変わっても，説明変数の行列から生成される空間は変わらないため，$y_i$の予測値としては同一なものが現れる．
+\section{}
+略
 \part{2022年}
+\setcounter{section}{0}
 \section{}
 略
 \section{}
@@ -332,7 +490,7 @@ $\hat{R}=\bar{y}/\mu_{X}$としたときの分散は$V_{1}\coloneqq \sigma^{2}_{
 \begin{align*}
     R\sigma^{2}_{X}&<2\frac{\sigma_{XY}}{\sigma_{X}\sigma_{Y}}
 \end{align*}
-これを変形すると、
+これを変形すると，
 \begin{align*}
     \frac{\mathrm{cv}(X)}{2\mathrm{cv}(Y)}&<\rho
 \end{align*}
